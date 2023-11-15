@@ -1,7 +1,7 @@
 {
   "expo": {
     "name": "test-app",
-    "slug": "test-app",
+    "slug": "tech-test",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/icon.png",
@@ -25,6 +25,12 @@
     },
     "web": {
       "favicon": "./assets/favicon.png"
-    }
+    },
+    "extra": {
+      "eas": {
+        "projectId": "57199e9a-d7b4-4d27-8e12-da425f067740"
+      }
+    },
+    "owner": "karabaja81"
   }
 }
