@@ -31,6 +31,11 @@ const styles = StyleSheet.create({
     borderWidth: 1,
     paddingLeft: 20,
   },
+  button: {
+    alignItems: 'center',
+    backgroundColor: '#DDDDDD',
+    padding: 10,
+  },
 });
 
 const useAlertTimer = () => {
@@ -82,6 +87,7 @@ const LoginForm = ({
         value={password}
       />
       <TouchableOpacity
+        style={styles.button}
         testID='login-button'
         disabled={username.length === 0 || password.length === 0}
         onPress={handleSubmit}

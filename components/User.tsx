@@ -23,6 +23,14 @@ const styles = StyleSheet.create({
     marginBottom: 5,
     fontWeight: 'bold',
   },
+  userMapLinkWrapper: {
+    paddingVertical: 3,
+  },
+  userMapLink: {
+    fontWeight: 'bold',
+    textDecorationLine: 'underline',
+    gap: 10,
+  },
 });
 export const UserListItem = ({ user }: PropsWithChildren<{ user: User }>) => {
   const { suite, street, zipcode, city } = user.address;
@@ -42,28 +50,13 @@ export const UserListItem = ({ user }: PropsWithChildren<{ user: User }>) => {
         onPress={() => {
           openUserOnMap();
         }}
-        style={{
-          paddingVertical: 3,
-        }}
+        style={styles.userMapLinkWrapper}
       >
-        <Text
-          style={{
-            marginBottom: 2,
-          }}
-        >
-          Lives at:
-        </Text>
-        <Text style={{ marginBottom: 20 }}>
+        <Text>Lives at:</Text>
+        <Text>
           {suite}, {street}, {zipcode} {city}
         </Text>
-        <Text
-          style={{
-            fontWeight: 'bold',
-            textDecorationLine: 'underline',
-          }}
-        >
-          see on map
-        </Text>
+        <Text style={styles.userMapLink}>see on map</Text>
       </TouchableOpacity>
     </View>
   );
