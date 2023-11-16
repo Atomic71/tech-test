@@ -1,13 +1,11 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import {
-  View,
-  TextInput,
-  Button,
-  Text,
   Alert,
-  NativeSyntheticEvent,
-  TextInputChangeEventData,
   StyleSheet,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
 } from 'react-native';
 
 const useLoginInfo = () => {
@@ -45,16 +43,15 @@ const useAlertTimer = () => {
   }, []);
 };
 
-type EType = NativeSyntheticEvent<TextInputChangeEventData>;
 const LoginForm = () => {
   const { username, password, setUsername, setPassword } = useLoginInfo();
   useAlertTimer();
 
-  const handleChangeUsername = ({ nativeEvent: { text } }: EType) => {
+  const handleChangeUsername = (text: string) => {
     setUsername(text);
   };
 
-  const handleChangePassword = ({ nativeEvent: { text } }: EType) => {
+  const handleChangePassword = (text: string) => {
     setPassword(text);
   };
 
@@ -67,22 +64,26 @@ const LoginForm = () => {
       <Text style={styles.title}>Login</Text>
       <TextInput
         style={styles.input}
+        testID='username-input'
         placeholder='your-email@email.com'
-        onChange={handleChangeUsername}
+        onChangeText={handleChangeUsername}
         value={username}
       />
       <TextInput
+        testID='password-input'
         style={styles.input}
         secureTextEntry={true}
         placeholder='Enter your password'
-        onChange={handleChangePassword}
+        onChangeText={handleChangePassword}
         value={password}
       />
-      <Button
+      <TouchableOpacity
+        testID='login-button'
         disabled={username.length === 0 || password.length === 0}
-        title='Login'
         onPress={handleSubmit}
-      />
+      >
+        <Text>Andrej</Text>
+      </TouchableOpacity>
     </View>
   );
 };
