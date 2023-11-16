@@ -43,7 +43,11 @@ const useAlertTimer = () => {
   }, []);
 };
 
-const LoginForm = () => {
+const LoginForm = ({
+  onSubmit,
+}: {
+  onSubmit: (username: string, password: string) => void;
+}) => {
   const { username, password, setUsername, setPassword } = useLoginInfo();
   useAlertTimer();
 
@@ -56,7 +60,7 @@ const LoginForm = () => {
   };
 
   const handleSubmit = () => {
-    Alert.alert('Login submitted: ' + username + ', ' + password);
+    onSubmit(username, password);
   };
 
   return (
