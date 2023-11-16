@@ -1,15 +1,13 @@
-import {
-  cleanup,
-  fireEvent,
-  render,
-  waitFor,
-} from '@testing-library/react-native';
-import LoginForm from './LoginForm';
 import '@testing-library/jest-native/extend-expect';
+import { cleanup, fireEvent, render } from '@testing-library/react-native';
+import LoginForm from './LoginForm';
+import { Alert } from 'react-native';
 
 const testIdUsernameInput = 'username-input';
 const testIdPasswordInput = 'password-input';
 const testIdLoginButton = 'login-button';
+
+jest.spyOn(Alert, 'alert');
 
 describe('LoginForm', () => {
   afterEach(cleanup);
@@ -36,5 +34,15 @@ describe('LoginForm', () => {
     fireEvent.changeText(inputPassword, '123456');
     expect(inputPassword.props.value).toBe('123456');
     expect(btn).toBeEnabled();
+  });
+  it('Alerts user after 5 seconds', () => {
+    jest.useFakeTimers();
+    const screen = render(<LoginForm />);
+    expect(Alert.alert).not.toHaveBeenCalled();
+    jest.advanceTimersByTime(5000);
+
+    expect(Alert.alert).toHaveBeenCalled();
+    expect(Alert.alert).toHaveBeenCalledWith('Do you need help?');
+    jest.useRealTimers();
   });
 });

@@ -82,7 +82,7 @@ const LoginForm = () => {
         disabled={username.length === 0 || password.length === 0}
         onPress={handleSubmit}
       >
-        <Text>Andrej</Text>
+        <Text>Login</Text>
       </TouchableOpacity>
     </View>
   );
